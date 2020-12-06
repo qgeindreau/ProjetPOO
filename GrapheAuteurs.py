@@ -102,8 +102,13 @@ def getCommunauteA(graphe,dico,A,N):
             communaute.append(influenceur)
     return communaute
 
-cheminLecture = "hep-th-citations/hep-th-citations"    
+
+import Configuration as cf
+
+cheminLecture = cf.getChemin("lecture")
+  
 graphe,dico=setCitations(cheminLecture)
+
 #print(getInfluenceursAAvecProf(graphe, dico, "0001003", 2))
 
 #print(getInfluenceursA(graphe, dico, "0001003", 2))
@@ -112,17 +117,19 @@ graphe,dico=setCitations(cheminLecture)
 #print(getCommunauteA(graphe, dico, "0001003", 2))
 
 
-
+"""
 cheminLecture = "hep-th-citations/hep-th-citations-mini"  
 graphe,dico=setCitations(cheminLecture)
 nx.draw(graphe,pos=nx.circular_layout(graphe),with_labels=True)
+"""
 
+from Auteur import Auteur 
 
-
-
-
-
-
+test = Auteur("Test1",dico["0001001"], [1,2,3,4,7,8,9], [9,8,7,4,1,0])
+print(test)
+test2 = Auteur("Test2",dico["0001001"], [1,2,3,4,7,8,9], [9,8,7,4,1,0])
+test3 = Auteur("Test3",[1856,81,6,18,41,635,16,81,6,7], [1,2,3,4,7,8,9], [9,8,7,4,1,0])
+print(test3)
 
 
 
