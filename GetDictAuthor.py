@@ -23,11 +23,16 @@ def add_space_before_maj(text):
     return(newnam[1:])
 
 
-def Article_Dictionnaire(y_b=1992,y_e=2003):
+def Article_Dictionnaire(path=os.getcwd()):
     dictionnaire={}
     main_dir=os.getcwd()
-
-    list_dossier = [str(i) for i in range(y_b,y_e+1)]
+    os.chdir(path)
+    new_dir=os.getcwd()
+    list_dossier = list(filter(os.path.isdir, os.listdir(os.curdir)))
+    try:
+        list_dossier.remove('__pycache__')
+    except ValueError:
+        pass
     for ss_dos in list_dossier :
         os.chdir(ss_dos)
         for fichier in os.listdir():
@@ -41,7 +46,7 @@ def Article_Dictionnaire(y_b=1992,y_e=2003):
                     elif (find == True) and line.decode('utf-8').find(' ')==(0):
                         Auteurs+=line.decode()[1:]
                     elif (find == True) and line.decode('utf-8').find(' ')!=(0):
-                        Auteurs=Auteurs.replace('\n','' )
+                        Auteurs= Auteurs.replace('\n','' )
                         Auteurs=re.sub(r'\(.*\)', '', Auteurs)
                         Auteurs=Auteurs.replace(' and ',',')
                         Auteurs=Auteurs.replace(' ','')
@@ -57,14 +62,14 @@ def Article_Dictionnaire(y_b=1992,y_e=2003):
                                     dictionnaire.update({aut:[fichier.replace('.abs', '')]})
                         break
 
-        os.chdir(main_dir)
+        os.chdir(new_dir)
+    os.chdir(main_dir)
     return dictionnaire
 def corname(name):
     return [name,ca.correctName(add_space_before_maj(name))]
 
 def CorrectDico(dictionnaire):
     dico={}
-    print(len(dictionnaire.keys()))
     with concurrent.futures.ThreadPoolExecutor() as executor:
         aut=executor.map(corname, dictionnaire.keys())
         aut=list(aut)
@@ -75,5 +80,5 @@ def CorrectDico(dictionnaire):
                 dico.update({aut[i][1]:dictionnaire[aut[i][0]]})
     return(dico)
 a=time.time()
-open('Auteur_Article','wb').write(bytes(str(CorrectDico(Article_Dictionnaire())),encoding='utf-8'))
+#open('Auteur_Article','wb').write(bytes(str(CorrectDico(Article_Dictionnaire())),encoding='utf-8'))
 print(time.time()-a)

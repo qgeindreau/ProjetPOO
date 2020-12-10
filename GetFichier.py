@@ -12,7 +12,6 @@ def get_name(url):
 
 
 
-
 def download(url):
     get = requests.get(url)
     name=get_name(url)

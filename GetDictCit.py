@@ -17,4 +17,4 @@ def dict_citations(document):
             comparateur=base
     return dico
 
-open('dictionnaire citation','wb').write(bytes(str(dict_citations('hep-th-citations')),encoding='ASCII'))
+#open('dictionnaire citation','wb').write(bytes(str(dict_citations('hep-th-citations')),encoding='ASCII'))

@@ -24,3 +24,4 @@ def correctName(nom):
         for i in range(len(nom)):
                 nom[i]=correctName(nom[i])
         return nom
+
