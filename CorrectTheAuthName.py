@@ -2,6 +2,7 @@ import requests
 import json
 def correctName(nom):
     if type (nom)==(str):
+        nom.replace('Jr.','')
         try:
             ndf=nom.split(' ')
             ndf=ndf[len(ndf)-1]
@@ -19,7 +20,7 @@ def correctName(nom):
             except IndexError:
                 print('Nom non valide')
                 return(nom)
-        return(jsondata['hits']['hits'][0]['metadata']['name']['preferred_name'])
+        return(nom)
     if type(nom)==(list):
         for i in range(len(nom)):
                 nom[i]=correctName(nom[i])

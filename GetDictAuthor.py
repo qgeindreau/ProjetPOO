@@ -79,6 +79,6 @@ def CorrectDico(dictionnaire):
             except KeyError:
                 dico.update({aut[i][1]:dictionnaire[aut[i][0]]})
     return(dico)
-a=time.time()
+#a=time.time()
 #open('Auteur_Article','wb').write(bytes(str(CorrectDico(Article_Dictionnaire())),encoding='utf-8'))
-print(time.time()-a)
+#print(time.time()-a)
