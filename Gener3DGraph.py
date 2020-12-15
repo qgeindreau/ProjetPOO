@@ -1,6 +1,12 @@
-import networkx as nw
-import numpy as np
-from mayavi import mlab
+
+# -*- coding: utf-8 -*-
+import networkx as nw #Module pour générer des graphes
+import numpy as np#Le fameux
+from mayavi import mlab#Module pour générer un affichage 3d, abandonner au profit de plotly, vtk ne voulant pas s'installer sur mon pc
+
+
+
+#Ne servira pas de base, mais peut toujours servir
 
 
 def Draw3d(H):
@@ -24,6 +30,9 @@ def Draw3d(H):
     mlab.show()
     return
 
-k=nw.DiGraph()
-dico=({'voiture':'4roues','moto':'2roues'})
-k.add_edges_from((key,dico[key])for key in dico.keys())
+if __name__ == "__main__":
+    print('Voici le rendu')
+    k=nw.DiGraph()
+    dico=({'voiture':'4roues','moto':'2roues'})
+    k.add_edges_from((key,dico[key])for key in dico.keys())
+    Draw3d(k)
